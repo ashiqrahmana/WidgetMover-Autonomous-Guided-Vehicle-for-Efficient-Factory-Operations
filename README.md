@@ -21,9 +21,10 @@ The desired pickup and drop-off locations will be randomly assigned. In the figu
 **Controller** : Parallax Propeller
 
 **Sensors** : 
-| Sensor | Qty | Use |
-| IR Sensor | 3 | For Line following |
-| Ultra sonic Sensor| 2 | For Obstacle detection |
+| Sensor | Model | Use |
+|--------|-----|----|
+| IR Sensor | QTI | For Line following |
+| Ultra sonic Sensor | HC-SR04 | For Obstacle detection |
 
 **Actuator**
 Parallax Continious Servo
