@@ -40,4 +40,4 @@ At every node, A* path planner is invoked and the map is updated based on the ul
 Once the nodes are generated, we then generate the drive command by comparing the current and the next nodes and update the current node. If the command is a turn, we update both current node and orientation of the robot. This way, we can keep track of vertical lanes and accomodate the lane conditions.
 
 ## **Results**
-![Video](https://drive.google.com/file/d/1150Cy5POfgab_w2hkNcj7LKvisDDdG4a/view?usp=share_link)
+[Video](https://youtu.be/_2NTl6i4DrA)
