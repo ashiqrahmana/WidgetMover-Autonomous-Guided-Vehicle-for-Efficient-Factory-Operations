@@ -35,9 +35,14 @@ Parallax Continious Servo
 ## **Approach**
 Since the problem involves navigating from one node to another, the A* algorithm is employed. This approach helps avoid any hardcoded navigation as the algorithm will automatically generate the next set of nodes that has to be traversed to reach the final node. 
 
-At every node, A* path planner is invoked and the map is updated based on the ultrasonic sensor reading to block off unaccessable nodes. This forces the algorithm to generate alternative path that will get it to the destination. The child nodes are generated based on the accessible nodes from the given node to make sure that the lane constraints are met. 
+In order to define the area of operation, it is important to set a predetermined map. This is done using the grid variable defined as 2D matrix of 0s and 1s where 0s indicate availability of node and 1s indicate the node is not accessible. 
 
-Once the nodes are generated, we then generate the drive command by comparing the current and the next nodes and update the current node. If the command is a turn, we update both current node and orientation of the robot. This way, we can keep track of vertical lanes and accomodate the lane conditions.
+Each element in the 2D array indicate an intersection in the map. Since the robot will know if there is obstacle present in the next segment because of the ultrasonic sensor, we force the next intersection to 1 blocking access to that intersection, i.e.. if obstacle found intersection i, (i+1)th intersection is updated as 1, thereby forcing the A-Star to generate a path through an alternate route. This blocked intersection is released by the robot immediately after the alternate route is taken. The rational behind this being the path between intersection i and (i+1) is what is not accessible and not the (i+1)th intersection as such. 
+
+Another aspect of the A* algorithm that was crucial was generating the child nodes. Since there were lane constraints, this will be the deciding factor to determine the child nodes in certain lanes. Eg. in lane S only forward movements and turns are possible, so if current node is (x,y) then the possible child nodes would be, (x+1,y), (x,y+1), (x,y-1). Also, in order to honor the lane speed parameter, we also employ a higher cost on Lane A,B so that the robot will always prefer the S lane as that will optimize time as well alongside the distance which is the primary optimization objective.
+
+Once the nodes are generated, we then back propogate from the final node to reach the initial node and invert it to provide the path. This generated path is then converted to drive command by comparing the current and the next nodes and updating the current node once the drive command is executed. If the command is a turn, we update both current node and orientation of the robot. This way, we can keep track of vertical lanes and accomodate the lane conditions.
+
 
 ## **Results**
 [Video](https://youtu.be/_2NTl6i4DrA)
