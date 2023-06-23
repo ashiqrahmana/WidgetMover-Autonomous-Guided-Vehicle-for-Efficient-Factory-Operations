@@ -43,3 +43,4 @@ Motion decision Function : basic_line_follower() uses multiple if else condition
 1. display() : Used to display specific data and messages on the LCD Display hooked up.
 2. acquire_target() : Used to take in the drop point for the widget from user.
 
+PS : The code you are about to see may not be an elegant or optimized one, but it helped us get through the project. One of our main learnings from this project was to plan out the code structure to make the code a bit elegant. 
